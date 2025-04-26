@@ -17,7 +17,7 @@ const Navbar = () => {
   const { isSignedIn } = useUser();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-
+  console.log(isMobile);
   // Handle window resize
   useEffect(() => {
     const checkScreenSize = () => {
