@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <footer className="border-t border-border bg-background/80 backdrop-blur-sm">
+    <footer className="border-t border-border bg-background/80 backdrop-blur-sm  md:px-14">
       {/* Top border glow */}
       <div className="h-px w-full bg-gradient-to-r from-transparent via-primary/30 to-transparent"></div>
 
@@ -69,4 +69,3 @@ const Footer = () => {
   );
 };
 export default Footer;
-  

@@ -1,15 +1,43 @@
 "use client";
 
 import { SignInButton, SignUpButton, UserButton, useUser } from "@clerk/nextjs";
-import { DumbbellIcon, HomeIcon, UserIcon, ZapIcon } from "lucide-react";
+import {
+  DumbbellIcon,
+  HomeIcon,
+  MenuIcon,
+  UserIcon,
+  X,
+  ZapIcon,
+} from "lucide-react";
 import Link from "next/link";
 import { Button } from "./ui/button";
+import { useState, useEffect } from "react";
 
 const Navbar = () => {
   const { isSignedIn } = useUser();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Handle window resize
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth < 768);
+      if (window.innerWidth >= 768) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    checkScreenSize();
+    window.addEventListener("resize", checkScreenSize);
+    return () => window.removeEventListener("resize", checkScreenSize);
+  }, []);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/60 backdrop-blur-md border-b border-border py-3">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-background/60 backdrop-blur-md border-b border-border py-3 px-4 md:px-14">
       <div className="container mx-auto flex items-center justify-between">
         {/* LOGO */}
         <Link href="/" className="flex items-center gap-2">
@@ -21,8 +49,16 @@ const Navbar = () => {
           </span>
         </Link>
 
-        {/* NAVIGATION */}
-        <nav className="flex items-center gap-5">
+        {/* BURGER MENU BUTTON (MOBILE) */}
+        <button
+          className="md:hidden text-foreground p-2"
+          onClick={toggleMenu}
+          aria-label="Toggle menu">
+          {isMenuOpen ? <X size={24} /> : <MenuIcon size={24} />}
+        </button>
+
+        {/* NAVIGATION - DESKTOP */}
+        <nav className="hidden md:flex items-center gap-5">
           {isSignedIn ? (
             <>
               <Link
@@ -72,6 +108,72 @@ const Navbar = () => {
           )}
         </nav>
       </div>
+
+      {/* MOBILE MENU */}
+      {isMenuOpen && (
+        <div className="md:hidden absolute top-full left-0 right-0 bg-background border-b border-border py-4 px-6 shadow-lg">
+          <nav className="flex flex-col space-y-4">
+            {isSignedIn ? (
+              <>
+                <Link
+                  href="/"
+                  className="flex items-center gap-1.5 text-sm hover:text-primary transition-colors py-2"
+                  onClick={() => setIsMenuOpen(false)}>
+                  <HomeIcon size={16} />
+                  <span>Home</span>
+                </Link>
+
+                <Link
+                  href="/generate-program"
+                  className="flex items-center gap-1.5 text-sm hover:text-primary transition-colors py-2"
+                  onClick={() => setIsMenuOpen(false)}>
+                  <DumbbellIcon size={16} />
+                  <span>Generate</span>
+                </Link>
+
+                <Link
+                  href="/profile"
+                  className="flex items-center gap-1.5 text-sm hover:text-primary transition-colors py-2"
+                  onClick={() => setIsMenuOpen(false)}>
+                  <UserIcon size={16} />
+                  <span>Profile</span>
+                </Link>
+
+                <Button
+                  asChild
+                  variant="outline"
+                  className="w-full border-primary/50 text-primary hover:text-white hover:bg-primary/10 mt-2">
+                  <Link
+                    href="/generate-program"
+                    onClick={() => setIsMenuOpen(false)}>
+                    Get Started
+                  </Link>
+                </Button>
+
+                <div className="py-2">
+                  <UserButton />
+                </div>
+              </>
+            ) : (
+              <>
+                <SignInButton>
+                  <Button
+                    variant={"outline"}
+                    className="w-full border-primary/50 text-primary hover:text-white hover:bg-primary/10">
+                    Sign In
+                  </Button>
+                </SignInButton>
+
+                <SignUpButton>
+                  <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
+                    Sign Up
+                  </Button>
+                </SignUpButton>
+              </>
+            )}
+          </nav>
+        </div>
+      )}
     </header>
   );
 };
