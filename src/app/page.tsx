@@ -1,24 +1,24 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRightIcon, Dumbbell, Sparkles, Zap } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
-
+import HeroSectionImage from "../../public/hero-ai3.png";
+import TerminalOverlay from "@/components/terminal-overlay";
+import UserPrograms from "@/components/users-program";
 const HomePage = () => {
   return (
-    <div className="flex flex-col min-h-screen text-foreground overflow-hidden px-4 md:px-[64px]">
+    <div className="flex flex-col min-h-screen text-foreground overflow-hidden px-10 md:px-[64px]">
       {/* Enhanced background effects with light sources */}
       <div className="fixed inset-0 -z-10 bg-[radial-gradient(ellipse_at_top_right,rgba(var(--primary-rgb),0.15),transparent_50%),radial-gradient(ellipse_at_bottom_left,rgba(var(--secondary-rgb),0.15),transparent_50%)]"></div>
 
       {/* Light sources */}
       <div className="fixed -bottom-20 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-[100px] -z-5 animate-pulse-slow"></div>
-      <div
-        className="fixed -top-20 right-1/4 w-96 h-96 bg-secondary/20 rounded-full blur-[100px] -z-5 animate-pulse-slow"
-        style={{ animationDelay: "1s" }}></div>
 
-      <section className="relative z-10 py-12 md:py-14 flex-grow">
+      <section className="relative z-10 py-12 md:py-14 ">
         <div className="container mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start relative">
             {/* CORNER DECORATION - Enhanced with glow */}
-            <div className="absolute -top-10 left-0 w-40 h-40 border-l-2 border-t-2 border-primary/60 animate-pulse shadow-[0_0_15px_rgba(var(--primary-rgb),0.4)]" />
+            <div className="absolute -top-9 left-0 w-40 h-40 border-l-2 border-t-2 border-primary/60 animate-pulse shadow-[0_0_15px_rgba(var(--primary-rgb),0.4)]" />
             {/* <div className="absolute -bottom-10 right-0 w-40 h-40 border-r-2 border-b-2 border-primary/40 hidden md:block shadow-[0_0_15px_rgba(var(--primary-rgb),0.3)]" /> */}
 
             {/* Floating particles with glow */}
@@ -58,7 +58,7 @@ const HomePage = () => {
                   </span>
                 </div>
                 <div className="">
-                  <span className="text-primary relative inline-block animate-slide-up animation-delay-200 drop-shadow-[0_0_10px_rgba(var(--primary-rgb),0.5)]">
+                  <span className="text-primary relative inline-block animate-slide-up animation-delay-200 ">
                     Your {/* <span className="glitch   " data-glitch="Body"> */}
                     Body
                     {/* </span> */}
@@ -80,7 +80,7 @@ const HomePage = () => {
                       AI
                     </span>
                   </span>
-                  <span className="text-primary relative inline-block animate-slide-up animation-delay-600 drop-shadow-[0_0_10px_rgba(var(--primary-rgb),0.5)] mb-6">
+                  <span className="text-primary relative inline-block animate-slide-up animation-delay-600  mb-6">
                     {" "}
                     Technology
                     <span className="absolute top-3 -right-8">
@@ -164,14 +164,14 @@ const HomePage = () => {
             <div className="lg:col-span-5 relative animate-fade-in animation-delay-600">
               {/* CORNER PIECES - Enhanced with glow */}
               <div className="absolute -inset-4 pointer-events-none">
-                <div className="absolute top-0 left-0 w-16 h-16 border-l-2 border-t-2 border-primary/60 shadow-[0_0_10px_rgba(var(--primary-rgb),0.4)]" />
-                <div className="absolute top-0 right-0 w-16 h-16 border-r-2 border-t-2 border-primary/60 shadow-[0_0_10px_rgba(var(--primary-rgb),0.4)]" />
-                <div className="absolute bottom-0 left-0 w-16 h-16 border-l-2 border-b-2 border-primary/60 shadow-[0_0_10px_rgba(var(--primary-rgb),0.4)]" />
-                <div className="absolute bottom-0 right-0 w-16 h-16 border-r-2 border-b-2 border-primary/60 shadow-[0_0_10px_rgba(var(--primary-rgb),0.4)]" />
+                <div className="absolute -top-4 left-4 w-16 h-16 border-l-2 border-t-2 border-primary/60 shadow-[0_0_10px_rgba(var(--primary-rgb),0.4)]" />
+                <div className="absolute -top-4 right-4 w-16 h-16 border-r-2 border-t-2 border-primary/60 shadow-[0_0_10px_rgba(var(--primary-rgb),0.4)]" />
+                <div className="absolute -bottom-4 left-4 w-16 h-16 border-l-2 border-b-2 border-primary/60 shadow-[0_0_10px_rgba(var(--primary-rgb),0.4)]" />
+                <div className="absolute -bottom-4 right-4 w-16 h-16 border-r-2 border-b-2 border-primary/60 shadow-[0_0_10px_rgba(var(--primary-rgb),0.4)]" />
               </div>
 
               {/* IMAGE CONTAINER - Enhanced with stronger glow */}
-              <div className="relative aspect-square max-w-lg mx-auto">
+              <div className="relative aspect-square max-w-lg mx-auto ">
                 <div className="relative overflow-hidden rounded-lg bg-cyber-black shadow-[0_0_25px_rgba(var(--primary-rgb),0.4)]">
                   {/* Animated glow effect */}
                   <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-secondary/20 opacity-60 animate-gradient-shift"></div>
@@ -179,8 +179,11 @@ const HomePage = () => {
                   {/* Underlighting effect */}
                   <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-3/4 h-20 bg-primary/30 blur-[30px] rounded-full"></div>
 
-                  <img
-                    src="/hero-ai3.png"
+                  <Image
+                    src={HeroSectionImage}
+                    placeholder="blur"
+                    width={1024}
+                    height={1536}
                     alt="AI Fitness Coach"
                     className="size-full object-cover object-center relative z-10 transition-transform hover:scale-105 duration-700"
                   />
@@ -208,7 +211,9 @@ const HomePage = () => {
                   <div className="absolute inset-0 z-20 bg-gradient-to-t from-background via-background/40 to-transparent"></div>
 
                   {/* Interactive data display */}
-                  <div className="absolute bottom-4 left-4 right-4 z-30 bg-black/60 backdrop-blur-sm p-3 rounded border border-primary/40 font-mono text-xs opacity-80 hover:opacity-100 transition-opacity">
+                  <TerminalOverlay />
+
+                  {/* <div className="absolute bottom-4 left-4 right-4 z-30 bg-black/60 backdrop-blur-sm p-3 rounded border border-primary/40 font-mono text-xs opacity-80 hover:opacity-100 transition-opacity">
                     <div className="flex justify-between items-center">
                       <span className="text-primary">AI SYSTEM ACTIVE</span>
                       <span className="animate-pulse">●</span>
@@ -216,13 +221,14 @@ const HomePage = () => {
                     <div className="mt-1 text-[10px] text-muted-foreground">
                       ANALYZING FITNESS DATA • GENERATING PERSONALIZED PLANS
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
           </div>
         </div>
       </section>
+      <UserPrograms />
     </div>
   );
 };
